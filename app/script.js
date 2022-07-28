@@ -6,7 +6,6 @@ const App = () => {
 
   const [status, setStatus] = useState('off');
   const [time, setTime] = useState(5);
-  const [timer, setTimer] = useState(null)
   const [running, setRunning] = useState(null);
 
   const formatTime = (time) => {
@@ -37,9 +36,15 @@ const App = () => {
     setTime(0);
   };
 
+  const playBell = () => {
+    const bell = new Audio('./sounds/bell.wav');
+    bell.play();
+  }
+
   if (time === 0 && status === 'work') {
     setStatus('rest');
     setTime(3)
+    playBell();
   } else if (time === 0 && status === 'rest') {
     setStatus('work');
     setTime(5)
@@ -48,6 +53,8 @@ const App = () => {
   const closeApp = () => {
     window.close();
   };
+
+
 
 
   return (
